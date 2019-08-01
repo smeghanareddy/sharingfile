@@ -1,0 +1,26 @@
+{% extends 'bases.html' %}
+{% load staticfiles %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<nav class="navbar navbar-expand-lg navbar-light fixed-top bg-light">
+    <a class="navbar-brand" href="#">
+        <img src="{% static 'img/logo.4a51a338.png' %}" alt="Responsive image" width="100">
+    </a>
+    <a class="dropdown-item" href="{% url 'upload_document' %}">Upload_document</a>
+    <a class="dropdown-item" href="{% url 'list_document' %}">list_document</a>
+    <ul class="navbar-nav ml-auto">
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <img src="{%static 'img/icon(1).png' %}" alt="Responsive image" width="20">
+            <a class="dropdown-item" href="{% url 'logout' %}">Logout</a>
+        </div>
+    </ul>
+</nav>
+</br></br>
+<h2>Upload</h2>
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form|crispy }}
+    <button type="submit" class="btn btn-primary">Upload</button>
+</form>
+{% endblock %}

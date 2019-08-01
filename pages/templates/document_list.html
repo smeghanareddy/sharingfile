@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block content %}
+<nav class="navbar navbar-expand-lg navbar-light fixed-top bg-light">
+    <a class="navbar-brand" href="#">
+        <img src="{% static 'img/logo.4a51a338.png' %}" alt="Responsive image" width="100">
+    </a>
+    <ul class="navbar-nav ml-auto">
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <img src="{%static 'img/icon(1).png' %}" alt="Responsive image" width="20">
+        <a class="dropdown-item" href="{% url 'logout' %}">Logout</a>
+    </div>
+    </ul>
+</nav>
+<h2>Documents</h2>
+
+<table class="table mb-0">
+    <thead>
+    <tr>
+        <th>Title</th>
+        <th>Description</th>
+        <th>link</th>
+        <th>Download</th>
+        <th>Delete</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for d in document %}
+    <tr>
+        <td>
+            {{d.title}}
+        </td>
+        <td>{{ d.description }}</td>
+        <td>
+            <a href="{{ d.pdf.url }}">
+                {{ d.pdf.url }}
+            </a>
+        <td>
+            <a href="{{ d.pdf.url }}" class="btn btn-primary btn-sm" target="_blank">
+                Download PDF
+            </a>
+        </td>
+        <td>
+            <form method="post" action="{% url 'delete_document' d.pk %}">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+            </form>
+        </td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

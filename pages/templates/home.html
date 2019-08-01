@@ -1,0 +1,41 @@
+{% extends "bases.html" %}
+{% load staticfiles %}
+{% block content %}
+<div class="container">
+    <div class="row justify-content-center">
+
+        <div class="col-lg-7 py-5 m-md-5">
+            <nav class="navbar navbar-expand-lg fixed-top bg-light text-left">
+                <img src="{% static 'logo.4a51a338.png' %}" width="130px" alt="Responsive image">
+            </nav>
+            <h3>Create Your Employee Account:</h3>
+            <div class="card-group">
+                <div class="card border-primary">
+                    <div class="card-body">
+
+                        <ul>
+                            {{errors}}
+                        </ul>
+                        <form method="post">
+                            {% csrf_token %}
+                            <div class="form-row">
+                                {% csrf_token %}
+                                <ul>
+                                    {{ user_form.as_ul }}
+                                    {{ profile_form.as_ul }}
+
+                                </ul>
+                            </div>
+                            <div class="col-auto text-center">
+                                </br>
+                                <a href="#">Sign in</a>
+                                <button type="submit" class="btn btn-lg btn-primary mx-5">Register</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    {% endblock content %}

@@ -1,0 +1,55 @@
+{% extends "bases.html" %}
+{% load staticfiles %}
+{% block content %}
+<div class="container">
+    <div class="row justify-content-center">
+
+        <div class="col-sm-5 py-5 m-md-5">
+            <nav class="navbar navbar-expand-lg fixed-top bg-light text-left">
+                <img src="{% static 'logo.4a51a338.png' %}" width="130px" alt="Responsive image">
+                <ul class="navbar-nav ml-auto">
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <img src="{%static 'img/icon(1).png' %}" alt="Responsive image" width="20">
+                        <a class="dropdown-item" href="{% url 'home' %}">Register</a>
+                    </div>
+                </ul>
+            </nav>
+            <h3>LOGIN PAGE</h3>
+            <div class="card-group">
+                <div class="card border-primary">
+                    <div class="card-body">
+
+                        <ul>
+                            {{errors}}
+                        </ul>
+                        <form method="POST">
+                            {% csrf_token %}
+
+                            <div class="form-group">
+                                <label for="name">User Name</label>
+                                <input type="text" class="form-control" id="name" name="username"
+                                       placeholder="username">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="password">Password</label>
+                                <input type="password" class="form-control" id="password" name="password"
+                                       placeholder="Password">
+                            </div>
+                            user type
+                            <div class="form-group">
+                                <input type="text" class="form-control" id="type" name="type"
+                                       placeholder="user_type">
+                                 user type must be either admin or user2
+                            </div>
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-md btn-primary btn-block">Login</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}
